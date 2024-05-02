@@ -1,0 +1,42 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  11
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 11-c219200fdb8b
+Exec   : ansysToFoam flange.ans -scale 0.001
+Date   : Apr 25 2024
+Time   : 15:37:54
+Host   : "MSI"
+PID    : 40814
+I/O    : uncollated
+Case   : /home/yuriachermann/OpenFOAM/yuriachermann-11/run/flange
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Creating points
+Creating cells
+Creating boundary patches
+Patch 0 named patch1: 2440 faces
+Patch 1 named patch2: 348 faces
+Patch 2 named patch3: 96 faces
+Patch 3 named patch4: 384 faces
+ansysToFoam: 
+Ansys file format does not provide information about the type of the patch (eg. wall, symmetry plane, cyclic etc).
+All the patches have been created as type patch. Please reset after mesh conversion as necessary.
+
+Default patch type set to empty
+Creating faceZone patch1 with 2440 faces
+Creating faceZone patch2 with 348 faces
+Creating faceZone patch3 with 96 faces
+Creating faceZone patch4 with 384 faces
+Writing polyMesh
+
+end
