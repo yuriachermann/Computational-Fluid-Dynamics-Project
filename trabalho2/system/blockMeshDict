@@ -1,0 +1,143 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  11
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+scale 0.001;
+
+vertices #codeStream
+{
+    codeInclude
+    #{
+        #include "pointField.H"
+    #};
+
+    code
+    #{
+        pointField points(13);
+
+        points[0]   = point(-1000,          0,    0.5);
+        points[1]   = point(-232.8409,      0,    0.5);
+        points[2]   = point(0,              0,    0.5);
+        points[3]   = point(144,            0,    0.5);
+        points[4]   = point(1000,           0,    0.5);
+        points[5]   = point(0,            120,    0.5);
+        points[6]   = point(144,          120,    0.5);
+        points[7]   = point(1000,         120,    0.5);
+        points[8]   = point(-1000,        240,    0.5);
+        points[9]   = point(-232.8409,    240,    0.5);
+        points[10]  = point(0,            240,    0.5);
+        points[11]  = point(144,          240,    0.5);
+        points[12]  = point(1000,         240,    0.5);
+
+        // Duplicate x points
+        label sz = points.size();
+        points.setSize(2*sz);
+        for (label i = 0; i < sz; i++)
+        {
+            const point& pt = points[i];
+            points[i+1*sz] = point( pt.x(), pt.y(), -pt.z());
+        }
+
+        os  << points;
+    #};
+};
+
+blocks
+(
+    hex ( 0  8  9  1 13 21 22 14) (10 10 1) simpleGrading (1 1 1) //0
+    hex ( 1  9  5  2 14 22 18 15) (10 10 1) simpleGrading (1 1 1) //1
+    hex ( 2  5  6  3 15 18 19 16) (10 10 1) simpleGrading (1 1 1) //2
+    hex ( 3  6  7  4 16 19 20 17) (10 10 1) simpleGrading (1 1 1) //3
+    hex ( 5  9 10 18 22 23)       (10 10 1) simpleGrading (1 1 1) //4
+    hex ( 5 10 11  6 18 23 24 19) (10 10 1) simpleGrading (1 1 1) //5
+    hex ( 6 11 12  7 19 24 25 20) (10 10 1) simpleGrading (1 1 1) //6
+);
+
+edges
+(
+    arc  5  9 (-193.9408 146.6923  0.5)
+    arc 18 22 (-193.9408 146.6923 -0.5)
+);
+
+defaultPatch
+{
+    type empty;
+}
+
+boundary
+(
+    // cylinder2
+    // {
+    //     type wall;
+    //     faces
+    //     (
+    //         ( 1  4 17 14)
+    //         ( 4  5 18 17)
+    //         ( 5  2 15 18)
+    //     );
+    // }
+    // cylinder1
+    // {
+    //     type wall;
+    //     faces
+    //     (
+    //         (28 31 44 41)
+    //         (31 30 43 44)
+    //         (30 27 40 43)
+    //     );
+    // }
+    // down
+    // {
+    //     type wall;
+    //     faces
+    //     (
+    //         (38 29 42 51)
+    //         (29 28 41 42)
+    //         (27  0 13 40)
+    //         ( 0  1 14 13)
+    //         ( 2  3 16 15)
+    //         ( 3 12 25 16)
+    //     );
+    // }
+    // up
+    // {
+    //     type wall;
+    //     faces
+    //     (
+    //         (10  9 22 23)
+    //         ( 9  8 21 22)
+    //         ( 8 35 48 21)
+    //         (35 36 49 48)
+    //     );
+    // }
+    // right
+    // {
+    //     type wall;
+    //     faces
+    //     (
+    //         (12 11 24 25)
+    //         (11 10 23 24)
+    //     );
+    // }
+    // left
+    // {
+    //     type wall;
+    //     faces
+    //     (
+    //         (37 38 51 50)
+    //         (36 37 50 49)
+    //     );
+    // }
+);
+
+// ************************************************************************* //
