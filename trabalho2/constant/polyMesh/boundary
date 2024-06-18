@@ -20,8 +20,8 @@ FoamFile
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          1510;
-        startFace       1340;
+        nFaces          4710;
+        startFace       4240;
     }
 )
 
