@@ -31,22 +31,43 @@ solvers
         relTol          0;
     }
 
-    "(U|k|epsilon|omega|R|nuTilda).*"
+    U
     {
         solver          smoothSolver;
         smoother        GaussSeidel;
+        tolerance       1e-05;
+        relTol          0.01;
+    }
+
+    UFinal
+    {
+        $U;
         tolerance       1e-05;
         relTol          0;
     }
 }
 
-PIMPLE
+SIMPLE
 {
-    nCorrectors     2;
     nNonOrthogonalCorrectors 0;
-    pRefCell        0;
-    pRefValue       0;
+
+    residualControl
+    {
+        p               1e-5;
+        U               1e-5;
+    }
 }
 
+relaxationFactors
+{
+    fields
+    {
+        p               0.3;
+    }
+    equations
+    {
+        U               0.7;
+    }
+}
 
 // ************************************************************************* //

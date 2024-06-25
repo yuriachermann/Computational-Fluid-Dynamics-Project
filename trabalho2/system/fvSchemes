@@ -16,7 +16,7 @@ FoamFile
 
 ddtSchemes
 {
-    default         Euler;
+    default         steadyState;
 }
 
 gradSchemes
@@ -26,16 +26,10 @@ gradSchemes
 
 divSchemes
 {
-    default         none;
     div(phi,U)      Gauss limitedLinearV 1;
-    div(phi,k)      Gauss limitedLinear 1;
-    div(phi,epsilon) Gauss limitedLinear 1;
-    div(phi,omega)  Gauss limitedLinear 1;
-    div(phi,R)      Gauss limitedLinear 1;
-    div(R)          Gauss linear;
-    div(phi,nuTilda) Gauss limitedLinear 1;
     div((nuEff*dev2(T(grad(U))))) Gauss linear;
 }
+
 
 laplacianSchemes
 {
@@ -52,5 +46,9 @@ snGradSchemes
     default         corrected;
 }
 
+wallDist
+{
+    method meshWave;
+}
 
 // ************************************************************************* //

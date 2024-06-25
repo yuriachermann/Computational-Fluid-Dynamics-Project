@@ -19,22 +19,27 @@ internalField   uniform 0;
 
 boundaryField
 {
-    inlet
+    
+    left
     {
-        type            zeroGradient; // Condição de contorno de gradiente zero na entrada
+        type            zeroGradient;
     }
-    outlet
+    right
     {
         type            fixedValue;
         value           uniform 0; // Pressão de referência na saída
     }
-    frontAndBack
+    down
     {
-        type            empty;
+        type            zeroGradient;
     }
-    walls
+    up
     {
-        type            zeroGradient; // Condição de contorno de gradiente zero nas paredes
+        type            zeroGradient;
+    }
+    nozzle
+    {
+        type            zeroGradient;
     }
 }
 

@@ -9,30 +9,35 @@ FoamFile
 {
     format      ascii;
     class       volVectorField;
+    location    "0";
     object      U;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (7.5 0 0);
+internalField   uniform (0 0 0);
 
 boundaryField
 {
-    inlet
+    left
     {
         type            fixedValue;
-        value           uniform (7.5 0 0); // Velocidade de entrada
+        value           uniform (7.5 0 0); // Correct inflow velocity
     }
-    outlet
+    right
     {
-        type            zeroGradient; // Sem condição de contorno específica na saída
+        type            zeroGradient;
     }
-    frontAndBack
+    down
     {
-        type            empty;
+        type            zeroGradient;
     }
-    walls
+    up
+    {
+        type            noSlip;
+    }
+    nozzle
     {
         type            noSlip;
     }
