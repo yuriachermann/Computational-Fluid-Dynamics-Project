@@ -8,14 +8,13 @@
 FoamFile
 {
     format      ascii;
-    class       dictionary;
-    location    "constant";
-    object      physicalProperties;
+    class       regIOobject;
+    location    "constant/polyMesh";
+    object      cellZones;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-viscosityModel  constant;
-
-nu              [0 2 -1 0 0 0 0] 1e-01;
+0
+()
 
 // ************************************************************************* //
